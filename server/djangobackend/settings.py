@@ -27,7 +27,7 @@ DEBUG = True
 
 APPEND_SLASH = True
 
-ALLOWED_HOSTS = ["localhost"]
+ALLOWED_HOSTS = ["https://artangente00.us-south.cf.appdomain.cloud/"]
 
 
 # Application definition
