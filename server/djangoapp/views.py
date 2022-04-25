@@ -106,7 +106,7 @@ def get_dealerships(request):
 def get_dealer_details(request, dealer_id):
     context = {}
     if request.method == "GET":
-        url = 'https://0d8c864a.us-south.apigw.appdomain.cloud/reviews/get-review'
+        url = 'https://us-south.functions.appdomain.cloud/api/v1/web/a99ec036-1163-4f53-9f43-26a8f0204f87/Capstone/get-dealership'
         context = {"reviews":  restapis.get_dealer_reviews_by_id_from_cf(url, dealer_id)}
         return render(request, 'djangoapp/dealer_details.html', context)
 
@@ -114,7 +114,7 @@ def get_dealer_details(request, dealer_id):
 def add_review(request, dealer_id):
     if request.method == "GET":
         dealersid = dealer_id
-        url = "https://0d8c864a.us-south.apigw.appdomain.cloud/dealerships/dealer-get?dealerId={0}".format(dealersid)
+        url = "https://us-south.functions.appdomain.cloud/api/v1/web/a99ec036-1163-4f53-9f43-26a8f0204f87/Capstone/get-review".format(dealersid)
         # Get dealers from the URL
         context = {
             "cars": models.CarModel.objects.all(),
@@ -138,7 +138,7 @@ def add_review(request, dealer_id):
                 review["car_year"]= car.year.strftime("%Y")
             json_payload = {"review": review}
             print (json_payload)
-            url = "https://0d8c864a.us-south.apigw.appdomain.cloud/dealerships/reviews/review-post"
+            url = "https://us-south.functions.appdomain.cloud/api/v1/web/a99ec036-1163-4f53-9f43-26a8f0204f87/Capstone/post-review"
             restapis.post_request(url, json_payload, dealerId=dealer_id)
             return redirect("djangoapp:dealer_details", dealer_id=dealer_id)
         else:
